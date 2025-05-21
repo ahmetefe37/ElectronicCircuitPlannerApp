@@ -1,0 +1,31 @@
+{
+  "name": "circuitplanner",
+  "version": "1.0.0",
+  "description": "AI-powered electronic circuit design assistant",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "circuit",
+    "design",
+    "electronics",
+    "AI",
+    "Gemini"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "axios": "^1.9.0",
+    "bootstrap": "^5.3.6",
+    "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

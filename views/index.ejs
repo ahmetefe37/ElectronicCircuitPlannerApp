@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <div class="row container-fluid px-3">
+    <div class="col-lg-10 mx-auto">
+      <div class="card shadow-sm border-0 rounded-4 mb-4">
+
+        <div class="card-body p-4">
+
+          <form id="circuitForm" action="/generate" method="post">
+            <div class="mb-4">
+              <div class="d-flex justify-content-between mb-2">
+                <label for="circuitSpec" class="form-label fw-medium">Circuit Specifications:</label>
+
+              </div>
+              <textarea 
+                id="circuitSpec" 
+                name="circuitSpec" 
+                class="form-control border-0 bg-light shadow-sm" 
+                rows="8" 
+                placeholder="Describe your circuit requirements here. For example: 'I need a simple LED flasher circuit with adjustable frequency between 0.5-2Hz using commonly available components.'"
+                required></textarea>
+            </div>
+            
+            <div class="d-grid">
+              <button type="submit" class="btn btn-dark py-3 rounded-3">
+                <div class="d-flex align-items-center justify-content-center">
+                  <span class="me-2">Generate Circuit Plan</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightning-charge" viewBox="0 0 16 16">
+                    <path d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09zM4.157 8.5H7a.5.5 0 0 1 .478.647L6.11 13.59l5.732-6.09H9a.5.5 0 0 1-.478-.647L9.89 2.41z"/>
+                  </svg>
+                </div>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" id="results">
+    <div class="col-lg-9 mx-auto">
+      <div class="alert alert-primary d-none" id="loadingAlert" role="alert">
+        <div class="d-flex align-items-center">
+          <div class="spinner-border spinner-border-sm me-3" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div>
+            <strong>AI working on your circuit...</strong>
+            <p class="mb-0 text-muted">This might take a few moments. Our AI is analyzing your requirements.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card d-none shadow border-0 rounded-4" id="resultsCard">
+        <div class="card-header bg-light border-0 py-3 d-flex justify-content-between align-items-center">
+          <h2 class="mb-0 fs-3">Circuit Analysis Results</h2>
+          <a href="/output" class="btn btn-outline-dark btn-sm rounded-pill px-3">
+            <div class="d-flex align-items-center">
+              <span>View Detailed Results</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right ms-2" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+              </svg>
+            </div>
+          </a>
+        </div>
+        <div class="card-body p-4" id="resultContent">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include('partials/footer') %>
+  
+  <script src="/js/main.js"></script>
+</body>
+</html> 

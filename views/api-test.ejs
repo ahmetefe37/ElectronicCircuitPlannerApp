@@ -1,0 +1,97 @@
+<%- include('partials/header') %>
+
+<div class="row">
+  <div class="col-lg-6 mx-auto">
+    <div class="card shadow-sm border-0 rounded-4">
+      <div class="card-header bg-light border-0 py-3">
+        <h2 class="mb-0 fs-3">Gemini API Key Test</h2>
+      </div>
+      <div class="card-body p-4">
+        <% if (apiStatus.success) { %>
+          <div class="alert alert-success mb-4">
+            <div class="d-flex align-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-check-circle-fill me-3" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+              </svg>
+              <div>
+                <h5 class="mb-1">API Key Valid</h5>
+                <p class="mb-0">Your Gemini API key is configured correctly and functioning properly.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card bg-light mb-4">
+            <div class="card-body">
+              <h5 class="card-title">API Details</h5>
+              <ul class="list-group list-group-flush bg-light">
+                <li class="list-group-item bg-light d-flex justify-content-between">
+                  <span>API Model:</span>
+                  <span class="fw-medium"><%= apiStatus.model %></span>
+                </li>
+                <li class="list-group-item bg-light d-flex justify-content-between">
+                  <span>Response Time:</span>
+                  <span class="fw-medium"><%= apiStatus.responseTime %> ms</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="mt-4">
+            <h5>Test Response:</h5>
+            <div class="p-3 bg-light rounded-3 border">
+              <pre class="mb-0"><%= apiStatus.testResponse %></pre>
+            </div>
+          </div>
+        <% } else { %>
+          <div class="alert alert-danger mb-4">
+            <div class="d-flex align-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill me-3" viewBox="0 0 16 16">
+                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+              </svg>
+              <div>
+                <h5 class="mb-1">API Key Error</h5>
+                <p class="mb-0">There was a problem with your Gemini API key.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card bg-light mb-4">
+            <div class="card-body">
+              <h5 class="card-title">Error Details</h5>
+              <p class="card-text text-danger"><%= apiStatus.error %></p>
+            </div>
+          </div>
+          
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">How to Fix</h5>
+              <ol class="mb-0">
+                <li>Make sure you've created a <code>.env</code> file in the project root directory</li>
+                <li>Add your Gemini API key to the <code>.env</code> file: <pre class="mt-2 p-2 bg-dark text-light rounded">GEMINI_API_KEY=your_api_key_here</pre></li>
+                <li>Restart the server and try again</li>
+              </ol>
+            </div>
+          </div>
+        <% } %>
+        
+        <div class="d-flex justify-content-between mt-4">
+          <a href="/" class="btn btn-outline-dark rounded-pill px-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left me-2" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+            </svg>
+            Back to Home
+          </a>
+          <a href="/test-api-key" class="btn btn-dark rounded-pill px-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat me-2" viewBox="0 0 16 16">
+              <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+              <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
+            </svg>
+            Test Again
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %> 
